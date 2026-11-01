@@ -3,121 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GigBridge - Global Micro-Gig Hub</title>
+    <title>GigBridge - Global Micro & Enterprise Hub</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
         body { background-color: #0b0f19; color: #ffffff; padding-bottom: 70px; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid #1e293b; }
-        .logo-area { display: flex; align-items: center; gap: 10px; }
-        .logo-box { background: linear-gradient(135deg, #6366f1, #a855f7); color: white; padding: 8px 12px; font-weight: bold; border-radius: 10px; font-size: 16px; }
-        .logo-text { font-size: 20px; font-weight: bold; }
-        .balance-pill { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
-        .hero { margin: 20px; background: linear-gradient(135deg, #1e1b4b, #312e81); border: 1px solid #4338ca; border-radius: 20px; padding: 24px; }
-        .hero h1 { font-size: 22px; margin-bottom: 10px; }
-        .hero p { font-size: 13px; color: #94a3b8; margin-bottom: 15px; }
-        .section-header { display: flex; justify-content: space-between; align-items: center; padding: 0 20px; margin-bottom: 12px; }
-        .section-title { font-size: 16px; font-weight: bold; text-transform: uppercase; }
-        .reset-filter { color: #818cf8; font-size: 12px; cursor: pointer; text-decoration: underline; }
-        .categories { display: flex; gap: 10px; padding: 0 20px; overflow-x: auto; margin-bottom: 20px; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: rgba(15, 23, 42, 0.9); border-bottom: 1px solid #1e293b; }
+        .logo { font-size: 20px; font-weight: bold; color: #fff; background: linear-gradient(135deg, #6366f1, #a855f7); padding: 6px 12px; border-radius: 8px; }
+        .hero { margin: 20px; background: #1e1b4b; border-radius: 16px; padding: 20px; border: 1px solid #4338ca; }
+        .hero h1 { font-size: 20px; margin-bottom: 8px; }
+        .hero p { font-size: 13px; color: #94a3b8; }
+        .section-title { padding: 0 20px; font-size: 15px; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+        .categories { display: flex; gap: 8px; padding: 0 20px; overflow-x: auto; margin-bottom: 20px; }
         .categories::-webkit-scrollbar { display: none; }
-        .cat-chip { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 8px 16px; border-radius: 20px; font-size: 13px; white-space: nowrap; cursor: pointer; }
+        .cat-chip { background: #1e293b; color: #cbd5e1; border: 1px solid #334155; padding: 8px 14px; border-radius: 20px; font-size: 13px; white-space: nowrap; cursor: pointer; }
         .cat-chip.active { background: #6366f1; color: white; border-color: #818cf8; }
-        .gig-card { margin: 0 20px; background: #111827; border: 1px solid #1f2937; border-radius: 16px; padding: 16px; margin-bottom: 15px; }
-        .gig-tag-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .gig-tag { background: rgba(99, 102, 241, 0.15); color: #818cf8; padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 600; }
-        .gig-title { font-size: 15px; font-weight: bold; margin-bottom: 14px; }
-        .gig-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1f2937; padding-top: 12px; }
-        .price-value { font-size: 16px; font-weight: bold; color: #34d399; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; border-top: 1px solid #1e293b; display: flex; justify-content: space-around; padding: 10px 0; }
-        .nav-item { text-align: center; color: #64748b; font-size: 11px; text-decoration: none; }
+        .gig-card { margin: 0 20px 15px 20px; background: #111827; border: 1px solid #1f2937; border-radius: 14px; padding: 15px; }
+        .gig-tag { font-size: 11px; color: #818cf8; background: rgba(99, 102, 241, 0.15); padding: 3px 8px; border-radius: 6px; display: inline-block; margin-bottom: 8px; }
+        .gig-title { font-size: 14px; font-weight: bold; margin-bottom: 10px; }
+        .gig-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1f2937; padding-top: 10px; font-size: 13px; color: #34d399; font-weight: bold; }
+        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #0f172a; border-top: 1px solid #1e293b; display: flex; justify-content: space-around; padding: 12px 0; z-index: 100; }
+        .nav-item { color: #64748b; font-size: 11px; text-align: center; text-decoration: none; cursor: pointer; }
         .nav-item.active { color: #818cf8; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo-area">
-            <div class="logo-box">GB</div>
-            <div class="logo-text">GigBridge</div>
-        </div>
-        <div class="balance-pill">Bal: $145.00</div>
+        <div class="logo">GigBridge</div>
+        <div style="color: #34d399; font-weight: bold; font-size: 14px;">Bal: $145</div>
     </header>
 
     <div class="hero">
-        <h1>Trade Micro & Enterprise Gigs Instantly.</h1>
-        <p>Explore professional services ranging from fast edits to full-scale enterprise projects.</p>
+        <h1>Global Micro & Enterprise Gigs</h1>
+        <p>Explore instant digital services and high-ticket professional projects.</p>
     </div>
 
-    <div class="section-header">
-        <div class="section-title">Categories</div>
-        <a id="resetFilter" class="reset-filter">Reset Filter</a>
-    </div>
-
+    <div class="section-title">Categories</div>
     <div class="categories">
-        <div class="cat-chip active" data-category="All Gigs">All Gigs</div>
-        <div class="cat-chip" data-category="Video Editing">Video Editing</div>
-        <div class="cat-chip" data-category="Gaming Support">Gaming Support</div>
-        <div class="cat-chip" data-category="Development">Development</div>
+        <div class="cat-chip active" onclick="filterGigs('All Gigs', this)">All Gigs</div>
+        <div class="cat-chip" onclick="filterGigs('Video Editing', this)">Video Editing</div>
+        <div class="cat-chip" onclick="filterGigs('Gaming Support', this)">Gaming Support</div>
+        <div class="cat-chip" onclick="filterGigs('Development', this)">Development</div>
     </div>
 
-    <div id="gigsListContainer">
+    <div id="gigsContainer">
         <div class="gig-card" data-category="Video Editing">
-            <div class="gig-tag-row"><span class="gig-tag">Video Editing (Micro)</span><span>⏱ 24 Hours</span></div>
+            <span class="gig-tag">Video Editing (Micro)</span>
             <div class="gig-title">Cinematic Free Fire / PUBG Montage Edit</div>
-            <div class="gig-footer"><div>ShadowFX</div><div class="price-value">$15</div></div>
+            <div class="gig-footer"><span>ShadowFX</span><span>$15</span></div>
         </div>
 
         <div class="gig-card" data-category="Video Editing">
-            <div class="gig-tag-row"><span class="gig-tag">Video Editing (Enterprise)</span><span>⏱ 14 Days</span></div>
+            <span class="gig-tag">Video Editing (Enterprise)</span>
             <div class="gig-title">Full Feature Film & Documentary Color Grading Package</div>
-            <div class="gig-footer"><div>CineMaster Studio</div><div class="price-value">$500</div></div>
+            <div class="gig-footer"><span>CineMaster Studio</span><span>$500</span></div>
         </div>
 
         <div class="gig-card" data-category="Gaming Support">
-            <div class="gig-tag-row"><span class="gig-tag">Gaming Support (Micro)</span><span>⏱ 12 Hours</span></div>
+            <span class="gig-tag">Gaming Support (Micro)</span>
             <div class="gig-title">Pro Duo Push in Free Fire / BGMI Ranked</div>
-            <div class="gig-footer"><div>NexusPro</div><div class="price-value">$10</div></div>
+            <div class="gig-footer"><span>NexusPro</span><span>$10</span></div>
         </div>
 
         <div class="gig-card" data-category="Development">
-            <div class="gig-tag-row"><span class="gig-tag">Development (Enterprise)</span><span>⏱ 20 Days</span></div>
+            <span class="gig-tag">Development (Enterprise)</span>
             <div class="gig-title">Full-Stack SaaS Web Application with Payment Gateway</div>
-            <div class="gig-footer"><div>TechCorp Solutions</div><div class="price-value">$1,000</div></div>
+            <div class="gig-footer"><span>TechCorp Solutions</span><span>$1,000</span></div>
         </div>
     </div>
 
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active"><div>📍</div><div>Explore</div></a>
-        <a href="#" class="nav-item"><div>📊</div><div>Dashboard</div></a>
-        <a href="#" class="nav-item"><div>💬</div><div>Orders</div></a>
+        <a href="#" class="nav-item active"><div>📍</div>Explore</a>
+        <a href="#" class="nav-item"><div>📊</div>Dashboard</a>
+        <a href="#" class="nav-item"><div>💬</div>Orders</a>
     </nav>
 
     <script>
-        const chips = document.querySelectorAll('.cat-chip');
-        const gigCards = document.querySelectorAll('.gig-card');
-        const resetFilterBtn = document.getElementById('resetFilter');
+        function filterGigs(category, element) {
+            document.querySelectorAll('.cat-chip').forEach(chip => chip.classList.remove('active'));
+            element.classList.add('active');
 
-        chips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                chips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                const selected = chip.getAttribute('data-category');
-                gigCards.forEach(card => {
-                    if (selected === 'All Gigs' || card.getAttribute('data-category') === selected) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
+            document.querySelectorAll('.gig-card').forEach(card => {
+                if (category === 'All Gigs' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
-        });
-
-        resetFilterBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            chips.forEach(c => c.classList.remove('active'));
-            chips[0].classList.add('active');
-            gigCards.forEach(card => card.style.display = 'block');
-        });
+        }
     </script>
 </body>
 </html>
